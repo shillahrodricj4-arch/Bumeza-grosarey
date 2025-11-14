@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang='en'>
+<head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Bumenze Grocery - Home</title><link rel='stylesheet' href='style.css'></head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <img src="images/logo1.png" alt="Bumenze logo">
+      <strong><h1>BUMENZE GROCERY</h1></strong>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html" class="cart-link">Cart <span id="cart-count">0</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <strong><h1>Welcome to Bumenze Grocery</h1></strong>
+      <p>Your number one stop for fresh groceries and spice essentials.</p>
+      <p><a class="btn" href="products.html">Shop Now</a></p>
+    </div>
+    <div class="vegetables">
+      <img src="images/mixed veg.png" alt="vegetables" style="max-width:100%; border-radius:8px;">
+    </div>
+  </section>
+  <section class="features">
+    <article><h3>Wide selection</h3><p>Fresh produce, fruits and spices.</p></article>
+    <article><h3>Easy online shopping</h3><p>Safe and easy payment options available.</p></article>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-note">© 2025 Bumenze Grocery. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+function updateCartCount(){
+  try{
+    var cart = JSON.parse(localStorage.getItem('bg_cart') || '[]');
+    document.getElementById('cart-count').textContent = cart.length;
+  }catch(e){ console.log(e); }
+}
+updateCartCount();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang='en'>
+<head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Cart - Bumenze Grocery</title><link rel='stylesheet' href='style.css'></head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <img src="images/logo1.png" alt="Bumenze logo">
+      <strong><h1>BUMENZE GROCERY</h1></strong>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html" class="cart-link">Cart <span id="cart-count">0</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h2>Your Shopping Cart</h2>
+  <div id="cart-contents"></div>
+  <p><button onclick="clearCart()" class="btn-secondary">Clear cart</button> </p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-note">© 2025 Bumenze Grocery. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+function renderCart(){
+  var cart = JSON.parse(localStorage.getItem('bg_cart')||'[]');
+  var el = document.getElementById('cart-contents');
+  if(!cart.length) el.innerHTML = '<p>No items in the cart yet.</p>';
+  else{
+    var html = '<ul>';
+    var total = 0;
+    cart.forEach(function(it,idx){ html += '<li>'+it.name+' — UGX '+it.price+' <button onclick="removeItem('+idx+')">Remove</button></li>'; total += Number(it.price); });
+    html += '</ul><p><strong>Total: UGX '+ total +'</strong></p>';
+    el.innerHTML = html;
+  }
+  updateCartCount();
+}
+function removeItem(i){
+  var cart = JSON.parse(localStorage.getItem('bg_cart')||'[]');
+  cart.splice(i,1);
+  localStorage.setItem('bg_cart', JSON.stringify(cart));
+  renderCart();
+}
+function clearCart(){ localStorage.removeItem('bg_cart'); renderCart(); }
+function updateCartCount(){ var cart = JSON.parse(localStorage.getItem('bg_cart')||'[]'); document.getElementById('cart-count').textContent = cart.length; }
+renderCart();
+</script>
+
+</body>
+</html>

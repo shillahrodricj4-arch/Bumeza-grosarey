@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang='en'>
+<head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Products - Bumenze Grocery</title><link rel='stylesheet' href='style.css'></head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <img src="images/logo1.png" alt="Bumenze logo">
+      <strong><h2>BUMENZE GROCERY</h2></strong>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html" class="cart-link">Cart <span id="cart-count">0</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h2>Our Products</h2>
+  <section>
+    <h3>Fresh Fruits</h3>
+    <div class="products-grid">
+      <div class="card"><img src="images/mangoes.png" alt="Mangoes"><h4>Mangoes</h4><p>UGX 300</p><button onclick="addToCart('Mangoes',300)">Add to cart</button></div>
+      <div class="card"><img src="images/apple.png" alt="Apples"><h4>Apples</h4><p>UGX 1500</p><button onclick="addToCart('Apples',1500)">Add to cart</button></div>
+      <div class="card"><img src="images/tomatoes.png" alt="Tomatoes"><h4>Tomatoes</h4><p>UGX 500</p><button onclick="addToCart('Tomatoes',500)">Add to cart</button></div>
+    </div>
+  </section>
+  <section style="margin-top:18px;">
+    <h3>Vegetables & Spices</h3>
+    <div class="products-grid">
+      <div class="card"><img src="images/mixed veg.png" alt=""><h4>Mixed Veg</h4><p>UGX 2000</p><button onclick="addToCart('Mixed Veg',2000)">Add to cart</button></div>
+      <div class="card"><img src="images/spice.png" alt=""><h4>Spice Pack</h4><p>UGX 1200</p><button onclick="addToCart('Spice Pack',1200)">Add to cart</button></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-note">© 2025 Bumenze Grocery. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+function addToCart(name,price){
+  var cart = JSON.parse(localStorage.getItem('bg_cart')||'[]');
+  cart.push({name:name, price:price});
+  localStorage.setItem('bg_cart', JSON.stringify(cart));
+  updateCartCount();
+  alert(name + ' added to cart');
+}
+function updateCartCount(){
+  try{
+    var cart = JSON.parse(localStorage.getItem('bg_cart') || '[]');
+    document.getElementById('cart-count').textContent = cart.length;
+  }catch(e){}
+}
+updateCartCount();
+</script>
+
+</body>
+</html>
